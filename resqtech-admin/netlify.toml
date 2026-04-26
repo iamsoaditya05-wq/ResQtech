@@ -2,22 +2,21 @@
   command = "npm run build"
   publish = "dist"
 
-# SPA fallback — required for React Router
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Proxy /api/* and /socket.io/* to the backend API
-# Set API_URL in Netlify environment variables to your Railway/backend URL
+# Proxy /api/* and /socket.io/* to the backend API on Render
 [[redirects]]
   from = "/api/*"
-  to = ":API_URL/api/:splat"
+  to = "https://resqtech-v01z.onrender.com/api/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/socket.io/*"
-  to = ":API_URL/socket.io/:splat"
+  to = "https://resqtech-v01z.onrender.com/socket.io/:splat"
   status = 200
   force = true
+
+# SPA fallback — required for React Router (must be last)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
